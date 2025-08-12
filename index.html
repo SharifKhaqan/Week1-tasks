@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo-App</title>
+<style>
+    body{
+        font-family: Arial, sans-serif;
+        padding: 20px;
+    }
+    input, button {
+      padding: 8px;
+      font-size: 16px;
+    }
+     ul {
+      margin-top: 20px;
+      padding-left: 0;
+    }
+    li {
+      list-style: none;
+      padding: 8px;
+      border: 1px solid #ccc;
+      margin-bottom: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .delete-btn {
+      background-color: red;
+      color: white;
+      border: none;
+      padding: 4px 8px;
+      cursor: pointer;
+    }
+</style>
+</head>
+<body>
+    <h2>My ToDo-List</h2>
+    <input type="text" id="taskinput" placeholder="Enter a task">
+    <button onclick="addTask()">Add Task</button>
+    <ul id="Tasklist"></ul>
+ <script>
+    function addTask(){
+        const input=document.getElementById("taskinput");
+        const taskText=input.value.trim();
+        if(taskText==""){
+            alert("Please enter a task");
+            return;
+        }
+        const li=document.createElement("li");
+        li.textContent=taskText;
+
+        const del=document.createElement("button");
+        del.textContent="Delete";
+        del.className="delete-btn";
+
+        del.onclick=function(){
+            li.remove();
+        }
+        li.appendChild(del);
+        document.getElementById("Tasklist").appendChild(li);
+        input.value="";
+    }
+    </script>
+</body>
+</html>
