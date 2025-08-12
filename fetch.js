@@ -82,5 +82,126 @@ Promise.all([
 })
 .catch(error => {
   console.error('One or more requests failed:', error);  
-  
+
 });
+
+// 6. Fetch with query parameters: Use fetch to get a list of posts filtered by user ID by passing query parameters to the API.
+// HOW: Append query parameters (?userId=...) to the URL string before passing it to fetch.
+// WHY: Query parameters let you request specific filtered data from an API.
+const baseUrl = 'https://jsonplaceholder.typicode.com/posts';
+const userId = 1;
+const urlWithParams = `${baseUrl}?userId=${userId}`;
+fetch(urlWithParams)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`Error fetching posts: ${response.status}`);
+    }
+    return response.json(); 
+  })
+  .then(posts => {
+    console.log(`Posts for user ID ${userId}:`, posts);
+  })
+  .catch(error => {
+    console.error('Fetch failed:', error);
+  });
+
+
+// 7. Create a loading indicator: Display a loading message while data is being fetched, then replace it with the data once loaded.
+// HOW: Log "Loading..." before fetch, clear console after fetch completes, and display the data.
+// WHY: This improves user experience by indicating ongoing background work.
+async function fetchData() {
+  try {
+    console.log("Loading data...");
+    const response = await fetch('https://jsonplaceholder.typicode.com/posts?_limit=3');
+    if (!response.ok) {
+      throw new Error(`Error: ${response.status}`);
+    }
+    const data = await response.json();
+    console.clear();
+    console.log("Data loaded successfully:");
+    console.log(data);
+  } catch (error) {
+    console.clear();
+    console.error("Failed to fetch data:", error.message);
+  }
+}
+fetchData();
+
+
+// 8. Error handling with try/catch in async functions: Fetch data and gracefully handle network or parsing errors.
+// HOW: Wrap fetch and JSON parsing inside a try/catch block to catch errors.
+// WHY: This prevents the program from crashing and shows clear error messages.
+async function fetchDataWithErrorHandling() {
+  try {
+    console.log("Loading data...");
+    const response = await fetch('https://jsonplaceholder.typicode.com/posts?_limit=3');
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const data = await response.json();
+    console.clear();
+    console.log("Data loaded successfully:");
+    console.log(data);
+  } catch (error) {
+    console.clear();
+    console.error("Failed to fetch data:", error.message);
+  }
+}
+fetchDataWithErrorHandling();
+
+
+// 9. Fetch and post data: Send JSON data to an API using POST method and log the server's response.
+// HOW: Use fetch with 'POST' method, set 'Content-Type' header, and stringify the body.
+// WHY: POST requests are used to send new data to the server.
+async function postData() {
+    try {
+        const newPost = {
+            title: "Hello World",
+            body: "This is my first post using fetch POST method!",
+            userId: 1};
+        const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
+            method: "POST", 
+            headers: {
+                "Content-Type": "application/json"},
+            body: JSON.stringify(newPost)
+        });
+        const data = await response.json();
+        console.log("Response from server:", data);
+    } 
+    catch (error) {
+        console.error("Error posting data:", error);
+    }
+}
+postData();
+
+
+// 10. Fetch the first 10 posts and display each title with its total number of comments.
+// HOW: First fetch posts (limit 10), then loop through them and fetch related comments for each post.
+// WHY: Demonstrates sequential fetch calls where the second fetch depends on the first's results.
+async function fetchPostsWithComments() {
+  try {
+    const postsResponse = await fetch("https://jsonplaceholder.typicode.com/posts?_limit=10");
+    if (!postsResponse.ok) {
+      throw new Error(`Error fetching posts: ${postsResponse.status}`);
+    }
+    const posts = await postsResponse.json();
+    for (const post of posts) {
+      const commentsResponse = await fetch(`https://jsonplaceholder.typicode.com/posts/${post.id}/comments`);
+      if (!commentsResponse.ok) {
+        throw new Error(`Error fetching comments for post ${post.id}: ${commentsResponse.status}`);
+      }
+      const comments = await commentsResponse.json();
+      console.log(`Post: ${post.title}`);
+      console.log(`Total Comments: ${comments.length}`);
+      console.log("-------------------------");
+    }
+  } catch (error) {
+    console.error("Failed:", error.message);
+  }
+}
+fetchPostsWithComments();
+
+
+
+
+
