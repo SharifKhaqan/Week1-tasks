@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Optional Chaining Examples</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      transition: background-color 0.5s ease, color 0.5s ease;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .example-container {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+    .example-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    button {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 4px;
+      background-color: #8e24aa;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #6a1b9a;
+    }
+    pre {
+      background: rgba(0, 0, 0, 0.05);
+      padding: 10px;
+      border-radius: 5px;
+      overflow-x: auto;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="title">Optional Chaining</h1>
+
+  <!-- Example 1 -->
+  <div class="example-container">
+    <div class="example-header">
+      <h2>Example 1: Safe API Access</h2>
+      <button onclick="exampleOptional1()">Run</button>
+    </div>
+    <pre id="output1"></pre>
+  </div>
+
+  <!-- Example 2 -->
+<div class="example-container">
+  <div class="example-header">
+    <h2>Example 2: Dynamic Nested Access</h2>
+    <button onclick="exampleOptional2()">Run</button>
+  </div>
+  <pre id="output2"></pre>
+</div>
+
+<!-- Example 3 -->
+<div class="example-container">
+  <div class="example-header">
+    <h2>Example 3: Safe Function Calls</h2>
+    <button onclick="exampleOptional3()">Run</button>
+  </div>
+  <pre id="output3"></pre>
+</div>
+
+<!-- Example 4 -->
+<div class="example-container">
+  <div class="example-header">
+    <h2>Example 4: Fallback Defaults</h2>
+    <button onclick="exampleOptional4()">Run</button>
+  </div>
+  <pre id="output4"></pre>
+</div>
+
+<!-- Example 5 -->
+<div class="example-container">
+  <div class="example-header">
+    <h2>Example 5: Accessing Arrays Safely</h2>
+    <button onclick="exampleOptional5()">Run</button>
+  </div>
+  <pre id="output5"></pre>
+</div>
+
+<!-- Example 6 -->
+<div class="example-container">
+  <div class="example-header">
+    <h2>Example 6: Chained Optional Calls</h2>
+    <button onclick="exampleOptional6()">Run</button>
+  </div>
+  <pre id="output6"></pre>
+</div>
+
+<!-- Example 7 -->
+<div class="example-container">
+  <div class="example-header">
+    <h2>Example 7: Event Object Access</h2>
+    <button id="eventBtn" onclick="exampleOptional7()">Run</button>
+  </div>
+  <pre id="output7"></pre>
+</div>
+
+<!-- Example 8 -->
+<div class="example-container">
+  <div class="example-header">
+    <h2>Example 8: Optional Chaining with Map</h2>
+    <button onclick="exampleOptional8()">Run</button>
+  </div>
+  <pre id="output8"></pre>
+</div>
+
+<!-- Example 9 -->
+<div class="example-container">
+  <div class="example-header">
+    <h2>Example 9: Safe Iteration with Optional Chaining</h2>
+    <button onclick="exampleOptional9()">Run</button>
+  </div>
+  <pre id="output9"></pre>
+</div>
+
+<!-- Example 10 -->
+<div class="example-container">
+  <div class="example-header">
+    <h2>Example 10: Optional Chaining with Exam Score</h2>
+    <button onclick="exampleOptional10()">Run</button>
+  </div>
+  <pre id="output10"></pre>
+</div>
+  <script src="optionalChaining.js"></script>
+</body>
+</html>
